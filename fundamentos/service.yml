@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: meu-service
+spec:
+  selector:
+      app: meu-pod
+  ports:
+  - port: 80 # Porta no service
+    targetPort: 80  # Porta no Pod
+  type: NodePort
