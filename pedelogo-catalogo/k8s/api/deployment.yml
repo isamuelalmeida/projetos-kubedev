@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: api
-        image: saiwmon/pedelogo-catalogo:v1.0.0
+        image: 968644489163.dkr.ecr.us-east-1.amazonaws.com/pedelogo-catalogo:v1.0.0
         ports:
         - containerPort: 80
           name: http
@@ -34,3 +34,5 @@ spec:
             secretKeyRef:
               key: MONGO_INITDB_ROOT_PASSWORD
               name: mongodb-secret
+      imagePullSecrets:
+      - name: ecr-registry
