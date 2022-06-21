@@ -39,6 +39,13 @@ spec:
             port: 80
           failureThreshold: 3
           periodSeconds: 10
+        resources:
+          requests:
+            memory: "32Mi"
+            cpu: "100m" # 10% de CPU
+          limits:
+            memory: "64Mi"
+            cpu: "500m"
         envFrom:
         - configMapRef:
             name: api-configmap
