@@ -1,0 +1,12 @@
+# Contabiliza a soma de utulizaçãode recursos dos pods e aplica os limites definidos barrando a adição de novas réplicas
+# Pode ser aplicado por namespaces
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: compute-resource
+spec:
+  hard:
+    requests.cpu: "1"
+    requests.memory: "1024Mi"
+    limits.cpu: "2"
+    limits.memory: "4Gi"

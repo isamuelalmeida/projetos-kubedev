@@ -41,11 +41,11 @@ spec:
           periodSeconds: 10
         resources:
           requests:
-            memory: "64Mi"
-            cpu: "100m" # 10% de CPU
+            memory: "32Mi"
+            cpu: "50m" # 10% de CPU
           limits:
             memory: "256Mi"
-            cpu: "500m"
+            cpu: "250m"
         envFrom:
         - configMapRef:
             name: api-configmap

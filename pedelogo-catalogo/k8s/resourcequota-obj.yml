@@ -1,0 +1,9 @@
+# Contabiliza a soma da quantidade de pods e aplica os limites definidos barrando a adição de novas réplicas
+# Pode ser aplicado por namespaces
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: obj-resource
+spec:
+  hard:
+    pods: "5" # Permite somente o número de pods definido neste namespace
