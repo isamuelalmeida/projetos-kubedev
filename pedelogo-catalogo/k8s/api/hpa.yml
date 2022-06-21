@@ -1,3 +1,4 @@
+# Se baseia pelo resource request definido no deployment
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
