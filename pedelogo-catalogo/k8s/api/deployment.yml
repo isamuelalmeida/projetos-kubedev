@@ -34,7 +34,7 @@ spec:
               - "curl"
               - "-X"
               - "POST"
-              - "http://pruu.herokuapp.com/dump/lifecyclestop
+              - "http://pruu.herokuapp.com/dump/lifecyclestop"
         ports:
         - containerPort: 80
           name: http
