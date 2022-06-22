@@ -12,6 +12,12 @@ spec:
       labels:
         app: api
     spec:
+      # Cria um container utilizando o mesmo Pod com a função de realizar alguma ação a fim de preparar o ambiente para o container da aplicação
+      # # Caso ocorra alguma falha, o Pod não será iniciado e ficará com status CrashLoopBackOff. 
+      initContainers:
+      - name: init-pod-verify-mongo
+        image: busybox:1.28
+        command: ['sh', '-c','until nslookup mongo-service.default.svc.cluster.local; do echo Aguardando o banco de dados; sleep 2; done']
       containers:
       - name: api
         image: saiwmon/pedelogo-catalogo:v1.0.0
@@ -23,18 +29,10 @@ spec:
           # É possível utilizaro "httpGet" ao invés de "exec".
           postStart:
             exec:
-              command:
-              - "curl"
-              - "-X"
-              - "POST"
-              - "http://pruu.herokuapp.com/dump/lifecyclestart" # Este site precisa estar UP.
+              command: ["curl", "-X", "POST", "http://pruu.herokuapp.com/dump/lifecyclestart"] # Este site precisa estar UP.
           preStop:
             exec:
-              command:
-              - "curl"
-              - "-X"
-              - "POST"
-              - "http://pruu.herokuapp.com/dump/lifecyclestop"
+              command: ["curl", "-X", "POST", "http://pruu.herokuapp.com/dump/lifecyclestop"]
         ports:
         - containerPort: 80
           name: http
