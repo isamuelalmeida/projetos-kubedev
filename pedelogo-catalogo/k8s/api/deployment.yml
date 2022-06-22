@@ -14,7 +14,27 @@ spec:
     spec:
       containers:
       - name: api
-        image: 968644489163.dkr.ecr.us-east-1.amazonaws.com/pedelogo-catalogo:v1.0.0
+        image: saiwmon/pedelogo-catalogo:v1.0.0
+##       Utilizado integrado com o AWS ECR
+#        image: 968644489163.dkr.ecr.us-east-1.amazonaws.com/pedelogo-catalogo:v1.0.0
+        lifecycle:
+          # Realizado em paralelo na inicialização do Pod.
+          # Caso ocorra alguma falha, o Pod não será iniciado e ficará com status CrashLoopBackOff.
+          # É possível utilizaro "httpGet" ao invés de "exec".
+          postStart:
+            exec:
+              command:
+              - "curl"
+              - "-X"
+              - "POST"
+              - "http://pruu.herokuapp.com/dump/lifecyclestart" # Este site precisa estar UP.
+          preStop:
+            exec:
+              command:
+              - "curl"
+              - "-X"
+              - "POST"
+              - "http://pruu.herokuapp.com/dump/lifecyclestop
         ports:
         - containerPort: 80
           name: http
@@ -60,5 +80,6 @@ spec:
             secretKeyRef:
               key: MONGO_INITDB_ROOT_PASSWORD
               name: mongodb-secret
-      imagePullSecrets:
-      - name: ecr-registry
+##     Utilizado integrado com o AWS ECR
+#      imagePullSecrets:
+#      - name: ecr-registry
