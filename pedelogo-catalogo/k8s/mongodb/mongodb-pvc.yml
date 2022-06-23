@@ -1,0 +1,16 @@
+# Solicitante do persistente volume
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: meu-pvc01
+spec:
+  selector:
+    matchLabels:
+      type: local
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: storage-manual
+  resources:
+    requests:
+      storage: 5Gi
+

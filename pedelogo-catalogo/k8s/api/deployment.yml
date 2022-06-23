@@ -13,7 +13,7 @@ spec:
         app: api
     spec:
       # Cria um container utilizando o mesmo Pod com a função de realizar alguma ação a fim de preparar o ambiente para o container da aplicação
-      # # Caso ocorra alguma falha, o Pod não será iniciado e ficará com status CrashLoopBackOff. 
+      # Caso ocorra alguma falha, o Pod não será iniciado e ficará com status CrashLoopBackOff. 
       initContainers:
       - name: init-pod-verify-mongo
         image: busybox:1.28
@@ -29,7 +29,7 @@ spec:
           # É possível utilizaro "httpGet" ao invés de "exec".
           postStart:
             exec:
-              command: ["curl", "-X", "POST", "http://pruu.herokuapp.com/dump/lifecyclestart"] # Este site precisa estar UP.
+              command: ["curl", "-X", "POST", "http://pruu.herokuapp.com/dump/lifecyclestart"]
           preStop:
             exec:
               command: ["curl", "-X", "POST", "http://pruu.herokuapp.com/dump/lifecyclestop"]
