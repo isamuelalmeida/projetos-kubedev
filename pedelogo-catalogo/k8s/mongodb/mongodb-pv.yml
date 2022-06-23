@@ -1,3 +1,5 @@
+# Este storage reside apenas em um node.
+# Caso o pod seja realocado para outro node, não terá acesso a este volume.
 apiVersion: v1
 kind: PersistentVolume
 metadata:

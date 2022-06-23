@@ -1,0 +1,14 @@
+# Solicitante do persistente volume para um provedor de serviço
+# Pode ser encontrado os tipos disponíveis com "kubectl get storageclasses"
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: blablabla
+spec:
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: nome-do-storageclass-disponivel
+  resources:
+    requests:
+      storage: 5Gi
+
